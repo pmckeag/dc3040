@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorScreenBackground"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <EditText
+        android:id="@+id/edit_placename"
+        style="@style/text_view_style"
+        android:hint="@string/hint_name"
+        android:inputType="textAutoComplete" />
+    
+    <Button
+        android:id="@+id/place_date_button"
+        style="@style/button_style"
+        android:text="@string/place_button_text"/>
+
+    <EditText
+        android:id="@+id/edit_location"
+        style="@style/text_view_style"
+        android:hint="@string/place_location"
+        android:inputType="textAutoComplete" />
+
+    <EditText
+        android:id="@+id/edit_place_notes"
+        style="@style/text_view_style"
+        android:hint="@string/hint_notes"
+        android:inputType="textAutoComplete" />
+
+    <Button
+        android:id="@+id/button_save"
+        style="@style/button_style"
+        android:text="@string/button_save" />
+
+</LinearLayout>

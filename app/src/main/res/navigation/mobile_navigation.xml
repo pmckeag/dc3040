@@ -3,13 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/nav_holiday">
 
     <fragment
-        android:id="@+id/nav_home"
-        android:name="com.example.dc3040.ui.home.HomeFragment"
-        android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/nav_place"
+        android:name="com.example.dc3040.ui.place.PlaceFragment"
+        android:label="@string/menu_place"
+        tools:layout="@layout/fragment_place" >
+        <action
+            android:id="@+id/action_placesList_to_newPlace"
+            app:destination="@id/nav_newplace" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_gallery"
@@ -21,12 +25,50 @@
         android:id="@+id/nav_holiday"
         android:name="com.example.dc3040.ui.holiday.HolidayFragment"
         android:label="@string/menu_holiday"
-        tools:layout="@layout/fragment_holiday" />
+        tools:layout="@layout/fragment_holiday">
+        <action
+            android:id="@+id/action_holidayList_to_newHoliday"
+            app:destination="@id/nav_newholiday" />
+        <action
+            android:id="@+id/action_holidayList_to_viewHoliday"
+            app:destination="@id/nav_view_holiday" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_map"
         android:name="com.example.dc3040.ui.map.MapFragment"
         android:label="@string/menu_map"
         tools:layout="@layout/fragment_map" />
+
+    <fragment
+        android:id="@+id/nav_newholiday"
+        android:name="com.example.dc3040.ui.holiday.NewHolidayFragment"
+        android:label="@string/menu_newholiday"
+        tools:layout="@layout/fragment_newholiday">
+        <action
+            android:id ="@+id/action_newHoliday_to_holidayList"
+            app:destination ="@id/nav_holiday" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_newplace"
+        android:name="com.example.dc3040.ui.place.NewPlaceFragment"
+        android:label="@string/menu_newplace"
+        tools:layout="@layout/fragment_newplace">
+        <action
+            android:id="@+id/action_newPlace_to_placesList"
+            app:destination="@id/nav_place" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_view_holiday"
+        android:name="com.example.dc3040.ui.holiday.ViewHolidayFragment"
+        android:label="@string/menu_view_holiday"
+        tools:layout="@layout/fragment_view_holiday">
+        <action
+            android:id="@+id/action_viewHoliday_to_holidayList"
+            app:destination="@id/nav_holiday" />
+    </fragment>
+
 
 </navigation>

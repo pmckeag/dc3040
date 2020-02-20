@@ -7,9 +7,27 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
+    <string name="menu_place">Places</string>
     <string name="menu_gallery">Gallery</string>
-    <string name="menu_holiday">Holiday</string>
+    <string name="menu_holiday">Holidays</string>
     <string name="menu_map">Map</string>
+
+    <string name="hint_name">Name…</string>
+    <string name="hint_notes">Notes…</string>
+    <string name="button_save">Save</string>
+    <string name="empty_not_saved">Please add a name, start date, and end date.</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="text_end_date">End date</string>
+    <string name="text_start_date">Start date</string>
+    <string name="date_picker">datePicker</string>
+    <string name="menu_newplace">New Place</string>
+    <string name="menu_newholiday">New Holiday</string>
+    <string name="placename">Name...</string>
+    <string name="place_button_text">Start date</string>
+    <string name="place_location">Location...</string>
+    <string name="menu_view_holiday">View Holiday</string>
+    <string name="menu_view_place">View Place</string>
 
 </resources>
