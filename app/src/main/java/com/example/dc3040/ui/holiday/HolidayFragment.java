@@ -3,6 +3,7 @@ package com.example.dc3040.ui.holiday;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -31,7 +32,6 @@ public class HolidayFragment extends Fragment {
 
     private HolidayViewModel holidayViewModel;
 
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         holidayViewModel = new ViewModelProvider(this).get(HolidayViewModel.class);
@@ -53,6 +53,8 @@ public class HolidayFragment extends Fragment {
             @Override
             public void onItemClick(int position, View v) {
                 sendHolidayId(position + 1);
+                NavDirections action = HolidayFragmentDirections.actionHolidayListToViewHoliday();
+                Navigation.findNavController(root).navigate(action);
             }
         });
 
@@ -67,13 +69,6 @@ public class HolidayFragment extends Fragment {
     }
 
     public void sendHolidayId(int holidayId) {
-        Bundle bundle = new Bundle();
-        bundle.putInt("holidayId", holidayId);
-
-        ViewHolidayFragment viewHolidayFragment = new ViewHolidayFragment();
-        viewHolidayFragment.setArguments(bundle);
-
-        getChildFragmentManager().beginTransaction().replace(R.id.content, viewHolidayFragment).commit();
+        MainActivity.setHolidayId(holidayId);
     }
-
 }

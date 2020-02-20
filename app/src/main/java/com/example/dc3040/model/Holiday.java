@@ -4,10 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
+
+import com.example.dc3040.database.DateConverter;
 
 import java.util.Date;
 
 @Entity(tableName = "holidays")
+@TypeConverters(DateConverter.class)
 public class Holiday {
     @PrimaryKey(autoGenerate = true)
     @NonNull
@@ -58,5 +62,9 @@ public class Holiday {
 
     public String getNotes() {
         return this.notes;
+    }
+
+    public String toString(){
+        return this.name;
     }
 }

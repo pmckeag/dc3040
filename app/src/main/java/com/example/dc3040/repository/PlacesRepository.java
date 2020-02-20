@@ -2,6 +2,7 @@ package com.example.dc3040.repository;
 
 import android.app.Application;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 ;
@@ -29,11 +30,16 @@ public class PlacesRepository {
     }
 
     public void deletePlace(int placesId) {
-
     }
 
     public LiveData<List<Places>> selectAllPlaces() {
         return allPlaces;
+    }
+
+    public LiveData<List<Places>> selectPlacesFromHoliday(int holidayId) {
+        LiveData<List<Places>> result = placesDao.selectPlacesFromHoliday(holidayId);
+        Log.v("ds", "biginfo " + result.getValue());
+        return result;
     }
 
 

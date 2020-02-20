@@ -15,19 +15,19 @@
     <Button
         android:id="@+id/place_date_button"
         style="@style/button_style"
-        android:text="@string/place_button_text"/>
+        android:text="@string/enter_date"/>
 
-    <EditText
-        android:id="@+id/edit_location"
-        style="@style/text_view_style"
-        android:hint="@string/place_location"
-        android:inputType="textAutoComplete" />
 
     <EditText
         android:id="@+id/edit_place_notes"
         style="@style/text_view_style"
         android:hint="@string/hint_notes"
         android:inputType="textAutoComplete" />
+
+    <Spinner
+        android:id="@+id/holiday_spinner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
 
     <Button
         android:id="@+id/button_save"

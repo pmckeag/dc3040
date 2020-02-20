@@ -31,7 +31,7 @@ public class HolidayViewModel extends AndroidViewModel {
 
     public void delete(int holidayId) { repository.deleteHoliday(holidayId); }
 
-    public Holiday getOneHoliday(int holidayId) {  return repository.getOneHoliday(holidayId); }
+    public LiveData<Holiday> getOneHoliday(int holidayId) {  return repository.getOneHoliday(holidayId); }
 
     public void update(Holiday holiday) { repository.update(holiday); }
 }

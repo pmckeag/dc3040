@@ -2,6 +2,7 @@ package com.example.dc3040.database;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.room.Database;
@@ -18,7 +19,7 @@ import com.example.dc3040.model.Places;
 
 import java.util.Date;
 
-@Database(entities = {Holiday.class, Places.class, Companions.class}, version = 1, exportSchema = false)
+@Database(entities = {Holiday.class, Places.class, Companions.class}, version = 2, exportSchema = false)
 @TypeConverters(DateConverter.class)
 public abstract class HolidayRoomDatabase extends RoomDatabase {
 
@@ -43,6 +44,7 @@ public abstract class HolidayRoomDatabase extends RoomDatabase {
                             HolidayRoomDatabase.class, "holiday_database")
                             .fallbackToDestructiveMigration()
                             .addCallback(roomDatabaseCallback)
+                            .allowMainThreadQueries()
                             .build();
                 }
             }
@@ -66,14 +68,18 @@ public abstract class HolidayRoomDatabase extends RoomDatabase {
         Places place1 = new Places(1,
                 "Colosseum",
                 new Date(2019, 9, 10),
-                "Rome",
                 "Visited the Colosseum",
                 "");
 
         Places place2 = new Places(1,
                 "St Peter's Basilica",
                 new Date(2019, 9, 11),
-                "Vatican City",
+                "",
+                "");
+
+        Places place3 = new Places(2,
+                "Kungstradgarden",
+                new Date(2020, 1, 3),
                 "",
                 "");
 
@@ -87,10 +93,15 @@ public abstract class HolidayRoomDatabase extends RoomDatabase {
             holidayDao.deleteAllHolidays();
             placesDao.deleteAllPlaces();
 
+            holiday1.setHolidayId(1);
+            holiday2.setHolidayId(2);
+
             holidayDao.insertHoliday(holiday1);
             holidayDao.insertHoliday(holiday2);
+
             placesDao.insertPlace(place1);
             placesDao.insertPlace(place2);
+            placesDao.insertPlace(place3);
             return null;
         }
     }

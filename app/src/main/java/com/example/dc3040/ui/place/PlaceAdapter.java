@@ -18,7 +18,7 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
     private final LayoutInflater mInflater;
     private List<Places> mplaces; // Cached copy of places
 
-    PlaceAdapter(Context context) {
+    public PlaceAdapter(Context context) {
         mInflater = LayoutInflater.from(context);
     }
 
@@ -39,7 +39,7 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
         }
     }
 
-    void setPlaces(List<Places> places){
+    public void setPlaces(List<Places> places){
         mplaces = places;
         notifyDataSetChanged();
     }

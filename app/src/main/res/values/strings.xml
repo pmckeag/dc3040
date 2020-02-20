@@ -29,5 +29,7 @@
     <string name="place_location">Location...</string>
     <string name="menu_view_holiday">View Holiday</string>
     <string name="menu_view_place">View Place</string>
+    <string name="places_visited">Places Visited</string>
+    <string name="enter_date">Enter Date</string>
 
 </resources>

@@ -42,7 +42,7 @@ public class PlaceFragment extends Fragment {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
 
-        placeViewModel.getAllPlaces().observe(this.getViewLifecycleOwner(), new Observer<List<Places>>() {
+        placeViewModel.selectAllPlaces().observe(this.getViewLifecycleOwner(), new Observer<List<Places>>() {
             @Override
             public void onChanged(List<Places> places) {
                 adapter.setPlaces(places);

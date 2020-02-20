@@ -24,6 +24,7 @@ import android.view.Menu;
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
+    private static int staticHolidayId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,5 +62,11 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
+    public static void setHolidayId(int holidayId) {
+        staticHolidayId = holidayId;
+    }
 
+    public static int getHolidayId() {
+        return staticHolidayId;
+    }
 }

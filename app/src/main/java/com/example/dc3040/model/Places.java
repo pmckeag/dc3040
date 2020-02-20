@@ -27,21 +27,16 @@ public class Places {
     @ColumnInfo(name = "date")
     private Date date;
 
-    @NonNull
-    @ColumnInfo(name = "location")
-    private String location;
-
     @ColumnInfo(name = "notes")
     private String notes;
 
     @ColumnInfo(name = "photo")
     private String photo;
 
-    public Places(int holidayId, String name, Date date, String location, String notes, String photo) {
+    public Places(int holidayId, String name, Date date, String notes, String photo) {
         this.holidayId = holidayId;
         this.name = name;
         this.date = date;
-        this.location = location;
         this.notes = notes;
         this.photo = photo;
     }
@@ -66,9 +61,6 @@ public class Places {
         return this.date;
     }
 
-    public String getLocation() {
-        return this.location;
-    }
 
     public String getNotes() {
         return this.notes;

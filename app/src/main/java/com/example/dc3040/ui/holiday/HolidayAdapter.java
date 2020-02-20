@@ -18,9 +18,8 @@ public class HolidayAdapter extends RecyclerView.Adapter<HolidayAdapter.HolidayV
     private static ClickListener clickListener;
     private final LayoutInflater mInflater;
     private List<Holiday> mHolidays;
-    private Holiday singleHoliday;
 
-    HolidayAdapter(Context context) {
+    public HolidayAdapter(Context context) {
         mInflater = LayoutInflater.from(context);
     }
 
@@ -41,8 +40,8 @@ public class HolidayAdapter extends RecyclerView.Adapter<HolidayAdapter.HolidayV
         }
     }
 
-    void setHolidays(List<Holiday> Holidays){
-        mHolidays = Holidays;
+    void setHolidays(List<Holiday> holidays){
+        mHolidays = holidays;
         notifyDataSetChanged();
     }
 

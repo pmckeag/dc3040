@@ -92,18 +92,17 @@ public class NewHolidayFragment extends Fragment {
         @Override
         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
             if (startDate == null) {
-                startDate = new Date(year, month, dayOfMonth);
-                dateBuilder = "Start date: " + dayOfMonth + "/" + month + "/" + year
-                        + "\nPlease enter end date";
-                startDateButton.setText(dateBuilder);
+                startDate = new Date(year, month + 1, dayOfMonth);
+                dateBuilder = "Start date: " + dayOfMonth + "/" + (month + 1) + "/" + year;
+                startDateButton.setText(dateBuilder +  "\nPlease enter end date");
             } else  if (endDate == null) {
-                endDate = new Date(year, month, dayOfMonth);
-                dateBuilder = dateBuilder + "\nEnd date: " +  + dayOfMonth + "/" + month + "/" + year;
+                endDate = new Date(year, month + 1, dayOfMonth);
+                dateBuilder = dateBuilder + "\nEnd date: " +  + dayOfMonth + "/" + (month + 1) + "/" + year;
                 startDateButton.setText(dateBuilder);
             } else {
                 endDate = null;
-                startDate = new Date(year, month, dayOfMonth);
-                dateBuilder = "Start date: " + dayOfMonth + "/" + month + "/" + year
+                startDate = new Date(year, month + 1, dayOfMonth);
+                dateBuilder = "Start date: " + dayOfMonth + "/" + (month + 1) + "/" + year
                         + "\nPlease enter end date";
                 startDateButton.setText(dateBuilder);
             }
