@@ -16,8 +16,10 @@ import java.util.List;
 public class PlacesRepository {
 
     private PlacesDao placesDao;
+    public static int placeIncrement = 4;
 
     private LiveData<List<Places>> allPlaces;
+
 
     public PlacesRepository(Application application) {
         HolidayRoomDatabase db = HolidayRoomDatabase.getDatabase(application);
@@ -26,10 +28,17 @@ public class PlacesRepository {
     }
 
     public void insertPlace(Places places) {
+        places.setPlaceId(placeIncrement);
+        placeIncrement++;
         new insertAsyncTask(placesDao).execute(places);
     }
 
-    public void deletePlace(int placesId) {
+    public void deletePlace(Places place) {
+        placesDao.delete(place);
+    }
+
+    public void update(Places place) {
+        placesDao.update(place);
     }
 
     public LiveData<List<Places>> selectAllPlaces() {
@@ -38,7 +47,6 @@ public class PlacesRepository {
 
     public LiveData<List<Places>> selectPlacesFromHoliday(int holidayId) {
         LiveData<List<Places>> result = placesDao.selectPlacesFromHoliday(holidayId);
-        Log.v("ds", "biginfo " + result.getValue());
         return result;
     }
 

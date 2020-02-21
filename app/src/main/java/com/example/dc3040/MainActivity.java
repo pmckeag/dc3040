@@ -25,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private static int staticHolidayId;
+    private static int staticPlaceId;
+    private static int staticGalleryId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,4 +71,14 @@ public class MainActivity extends AppCompatActivity {
     public static int getHolidayId() {
         return staticHolidayId;
     }
+
+    public static void setPlaceId(int placeId) {
+        staticPlaceId = placeId;
+    }
+    public static int getPlaceId() {
+        return staticPlaceId;
+    }
+
+    public static void setGalleryId(int galleryId) { staticGalleryId = galleryId; }
+    public static int getGalleryId() { return staticGalleryId; }
 }

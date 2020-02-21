@@ -16,6 +16,8 @@ import com.example.dc3040.dao.PlacesDao;
 import com.example.dc3040.model.Companions;
 import com.example.dc3040.model.Holiday;
 import com.example.dc3040.model.Places;
+import com.example.dc3040.repository.HolidayRepository;
+import com.example.dc3040.repository.PlacesRepository;
 
 import java.util.Date;
 
@@ -69,19 +71,19 @@ public abstract class HolidayRoomDatabase extends RoomDatabase {
                 "Colosseum",
                 new Date(2019, 9, 10),
                 "Visited the Colosseum",
-                "");
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Colosseum_in_Rome%2C_Italy_-_April_2007.jpg/800px-Colosseum_in_Rome%2C_Italy_-_April_2007.jpg");
 
         Places place2 = new Places(1,
                 "St Peter's Basilica",
                 new Date(2019, 9, 11),
                 "",
-                "");
+                "https://upload.wikimedia.org/wikipedia/commons/f/f5/Basilica_di_San_Pietro_in_Vaticano_September_2015-1a.jpg");
 
         Places place3 = new Places(2,
                 "Kungstradgarden",
                 new Date(2020, 1, 3),
                 "",
-                "");
+                "https://upload.wikimedia.org/wikipedia/commons/0/0a/Kungstradgarden_2008.jpg");
 
         PopulateDbAsync(HolidayRoomDatabase db) {
             holidayDao = db.holidayDao();
@@ -93,8 +95,12 @@ public abstract class HolidayRoomDatabase extends RoomDatabase {
             holidayDao.deleteAllHolidays();
             placesDao.deleteAllPlaces();
 
+
             holiday1.setHolidayId(1);
             holiday2.setHolidayId(2);
+            place1.setPlaceId(1);
+            place2.setPlaceId(2);
+            place3.setPlaceId(3);
 
             holidayDao.insertHoliday(holiday1);
             holidayDao.insertHoliday(holiday2);

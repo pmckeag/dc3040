@@ -13,13 +13,30 @@
         <action
             android:id="@+id/action_placesList_to_newPlace"
             app:destination="@id/nav_newplace" />
+        <action
+            android:id="@+id/action_placesList_to_viewPlace"
+            app:destination="@id/nav_view_place" />
     </fragment>
 
     <fragment
         android:id="@+id/nav_gallery"
         android:name="com.example.dc3040.ui.gallery.GalleryFragment"
         android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_gallery" >
+        <action
+            android:id="@+id/action_gallery_to_picture"
+            app:destination="@id/nav_picture" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_picture"
+        android:name="com.example.dc3040.ui.gallery.PictureFragment"
+        android:label="@string/view_picture"
+        tools:layout="@layout/fragment_picture" >
+        <action
+            android:id="@+id/action_picture_to_gallery"
+            app:destination="@id/nav_gallery"/>
+    </fragment>
 
     <fragment
         android:id="@+id/nav_holiday"
@@ -70,5 +87,14 @@
             app:destination="@id/nav_holiday" />
     </fragment>
 
+    <fragment
+        android:id="@+id/nav_view_place"
+        android:name="com.example.dc3040.ui.place.ViewPlaceFragment"
+        android:label="@string/view_place"
+        tools:layour="@layout/fragment_view_place">
+        <action
+            android:id="@+id/action_viewPlace_to_placesList"
+            app:destination="@id/nav_place" />
+    </fragment>
 
 </navigation>

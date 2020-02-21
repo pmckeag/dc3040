@@ -27,9 +27,13 @@ public class PlaceViewModel extends AndroidViewModel {
         return this.allPlaces;
     }
 
+    public void delete(Places place) { repository.deletePlace(place);};
+
     public void insert(Places place) {
         repository.insertPlace(place);
     }
+
+    public void update(Places place) {repository.update(place); }
 
     public LiveData<List<Places>> selectPlacesFromHoliday(int holidayId) {
         return repository.selectPlacesFromHoliday(holidayId);

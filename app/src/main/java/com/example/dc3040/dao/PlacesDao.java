@@ -1,8 +1,10 @@
 package com.example.dc3040.dao;
 
 import androidx.lifecycle.LiveData;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import com.example.dc3040.model.Places;
 
@@ -17,10 +19,10 @@ public interface PlacesDao {
     @Query("DELETE FROM places WHERE holidayId = :holidayId ;")
     void deletePlaceFromHoliday(int holidayId);
 
-    @Query("DELETE FROM places WHERE placeId = :placeId ;")
-    void deletePlace(int placeId);
+    @Delete
+    void delete(Places place);
 
-    @Query("DELETE FROM places")
+    @Query("DELETE FROM places;")
     void deleteAllPlaces();
 
     @Query("SELECT * FROM places WHERE holidayId = :holidayId ;")
@@ -31,4 +33,7 @@ public interface PlacesDao {
 
     @Query("SELECT * FROM places ;")
     LiveData<List<Places>> selectAllPlaces();
+
+    @Update
+    void update(Places place);
 }

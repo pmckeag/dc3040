@@ -14,7 +14,7 @@ import java.util.List;
 
 public class HolidayRepository {
 
-    private static int increment = 3;
+    public static int holidayIncrement = 3;
 
     private HolidayDao holidayDao;
 
@@ -27,8 +27,8 @@ public class HolidayRepository {
     }
 
     public void insertHoliday(Holiday holiday) {
-        holiday.setHolidayId(increment);
-        increment++;
+        holiday.setHolidayId(holidayIncrement);
+        holidayIncrement++;
         new insertAsyncTask(holidayDao).execute(holiday);
     }
 

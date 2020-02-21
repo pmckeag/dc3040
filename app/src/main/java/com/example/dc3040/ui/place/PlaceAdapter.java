@@ -15,6 +15,7 @@ import java.util.List;
 
 public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHolder> {
 
+    private static ClickListener clickListener;
     private final LayoutInflater mInflater;
     private List<Places> mplaces; // Cached copy of places
 
@@ -53,13 +54,26 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
         else return 0;
     }
 
-    class PlaceViewHolder extends RecyclerView.ViewHolder {
+    class PlaceViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private final TextView placeItemView;
 
         private PlaceViewHolder(View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
             placeItemView = itemView.findViewById(R.id.textView);
+        }
+
+        public void onClick(View v) {
+            clickListener.onItemClick(getAdapterPosition(), v);
         }
     }
 
+    public void setOnItemClickListener(ClickListener clickListener) {
+        PlaceAdapter.clickListener = clickListener;
+    }
+
+    public interface ClickListener {
+        void onItemClick(int position, View v);
+    }
 }
+
