@@ -52,12 +52,6 @@
     </fragment>
 
     <fragment
-        android:id="@+id/nav_map"
-        android:name="com.example.dc3040.ui.map.MapFragment"
-        android:label="@string/menu_map"
-        tools:layout="@layout/fragment_map" />
-
-    <fragment
         android:id="@+id/nav_newholiday"
         android:name="com.example.dc3040.ui.holiday.NewHolidayFragment"
         android:label="@string/menu_newholiday"

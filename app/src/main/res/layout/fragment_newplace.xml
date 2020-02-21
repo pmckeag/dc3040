@@ -26,8 +26,14 @@
 
     <Spinner
         android:id="@+id/holiday_spinner"
+        android:padding="24dp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/button_photo"
+        style="@style/button_style"
+        android:text="@string/take_photo" />
 
     <Button
         android:id="@+id/button_save"

@@ -9,7 +9,7 @@
     android:gravity="start"
     android:orientation="horizontal"
     android:clickable="true"
-    android:background="?attr/selectableItemBackground">
+    android:background="@color/colorScreenBackground">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_images"

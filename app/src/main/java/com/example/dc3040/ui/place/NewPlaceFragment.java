@@ -1,9 +1,13 @@
 package com.example.dc3040.ui.place;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +18,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -27,9 +32,14 @@ import com.example.dc3040.ui.DateFragment;
 import com.example.dc3040.ui.holiday.HolidayViewModel;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
+import static android.app.Activity.RESULT_OK;
 
 public class NewPlaceFragment extends Fragment {
 
@@ -41,7 +51,10 @@ public class NewPlaceFragment extends Fragment {
     private EditText editPlaceNotes;
     private int holidayAssoc;
     private List<Holiday> holidayList;
-    //TODO add photo support
+    private Button photoButton;
+    private String photoLocation;
+    private static final int REQUEST_IMAGE_CAPTURE = 1;
+    private Bitmap imageBitmap;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -73,8 +86,18 @@ public class NewPlaceFragment extends Fragment {
             }
         });
 
+        photoButton = root.findViewById(R.id.button_photo);
 
         placeViewModel = new ViewModelProvider(this).get(PlaceViewModel.class);
+
+        photoLocation = "";
+
+        photoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dispatchTakePictureIntent();
+            }
+        });
 
         Button saveButton = root.findViewById(R.id.button_save);
         saveButton.setOnClickListener(new View.OnClickListener() {
@@ -90,7 +113,7 @@ public class NewPlaceFragment extends Fragment {
                             editPlaceName.getText().toString(),
                             date,
                             editPlaceNotes.getText().toString(),
-                            "");
+                            photoLocation);
                     placeViewModel.insert(newPlace);
                     NavDirections action = NewPlaceFragmentDirections.actionNewPlaceToPlacesList();
                     Navigation.findNavController(root).navigate(action);
@@ -134,4 +157,46 @@ public class NewPlaceFragment extends Fragment {
             dateButton.setText(buttonText);
         }
     };
+
+    private void dispatchTakePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        // Ensure that there's a camera activity to handle the intent
+        if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+            // Create the File where the photo should go
+            File photoFile = null;
+            try {
+                photoFile = createImageFile();
+            } catch (IOException ex) {
+            }
+            // Continue only if the File was successfully created
+            if (photoFile != null) {
+                Uri photoURI = FileProvider.getUriForFile(this.getActivity(),
+                        "com.example.dc3040.fileprovider",
+                        photoFile);
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                getActivity().startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+            }
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            imageBitmap = (Bitmap) extras.get("data");
+        }
+    }
+
+    private File createImageFile() throws IOException {
+        String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timestamp + "_";
+        File storageDir = getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName,
+                ".jpg",
+                storageDir
+        );
+        photoLocation = image.getAbsolutePath();
+        return image;
+    }
 }
